@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { Clock, Target, Eye } from 'lucide-react';
+import { Clock, Target, Eye, Star } from 'lucide-react';
 import { SCHOOL, STELLA_BIO } from '@/lib/constants';
 import Card from '@/components/ui/Card';
 

@@ -59,7 +59,6 @@ export default function ContactoPage() {
               </div>
             </Card>
 
-            {/* Mapa (embed Google Maps) */}
             <Card className="overflow-hidden">
               <div className="aspect-video w-full bg-school-surface flex items-center justify-center">
                 <iframe
@@ -77,7 +76,6 @@ export default function ContactoPage() {
             </Card>
           </div>
 
-          {/* Formulario de contacto (Formspree) */}
           <Card className="p-6">
             <h2 className="font-display font-bold text-xl text-school-text mb-6">
               Enviar mensaje

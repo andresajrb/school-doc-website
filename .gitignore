@@ -30,3 +30,8 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local tooling — scripts de Drive y markdowns generados (contienen estructura privada)
+scripts/
+biblioteca_*.md
+.docs/

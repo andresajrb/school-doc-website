@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Library, BookMarked } from 'lucide-react';
+import { ArrowRight, Library, BookOpen } from 'lucide-react';
 import { SCHOOL } from '@/lib/constants';
 
 export default function HeroSection() {
@@ -33,7 +33,11 @@ export default function HeroSection() {
           <span className="text-gradient-red">Stella Cechini</span>
         </h1>
 
-        <p className="text-school-muted text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
+        <p className="text-school-yellow font-display italic text-xl md:text-2xl max-w-2xl mx-auto mb-6">
+          «El éxito escolar comienza con una buena fuente»
+        </p>
+
+        <p className="text-school-muted text-base md:text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
           Formación integral con principios humanistas y pedagógicos para el desarrollo intelectual,
           moral y social de nuestra comunidad.
         </p>
@@ -65,15 +69,15 @@ export default function HeroSection() {
           </Link>
 
           <Link
-            href="/recursos"
+            href="#historia"
             className="
               inline-flex items-center gap-2 px-8 py-4 rounded-[var(--radius-btn)]
               border border-school-border hover:border-school-yellow text-school-muted hover:text-school-yellow
               font-display font-semibold text-base transition-all duration-200
             "
           >
-            <BookMarked size={20} />
-            Banco de Recursos
+            <BookOpen size={20} />
+            Conoce nuestra historia
           </Link>
         </div>
       </div>

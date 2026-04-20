@@ -4,7 +4,7 @@ import Card from '@/components/ui/Card';
 
 export default function MissionSection() {
   return (
-    <section className="section-padding">
+    <section id="mision-vision" className="section-padding">
       <div className="container-max">
         <div className="text-center mb-12">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-school-text mb-3">

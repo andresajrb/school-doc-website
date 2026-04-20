@@ -16,7 +16,4 @@ export const STELLA_BIO =
 export const NAV_LINKS = [
   { label: 'Inicio',     href: '/' },
   { label: 'Biblioteca', href: '/biblioteca' },
-  { label: 'Recursos',   href: '/recursos' },
-  { label: 'Historia',   href: '/historia' },
-  { label: 'Contacto',   href: '/contacto' },
 ];

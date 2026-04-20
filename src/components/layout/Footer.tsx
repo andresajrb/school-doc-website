@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MapPin, Mail } from 'lucide-react';
-import { SCHOOL, NAV_LINKS } from '@/lib/constants';
+import { SCHOOL } from '@/lib/constants';
+
+const FOOTER_LINKS = [
+  { label: 'Inicio',           href: '/' },
+  { label: 'Biblioteca',       href: '/biblioteca' },
+  { label: 'Nuestra Historia', href: '/#historia' },
+  { label: 'Misión y Visión',  href: '/#mision-vision' },
+  { label: 'Contacto',         href: '/contacto' },
+];
 
 export default function Footer() {
   return (
@@ -29,7 +37,7 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-semibold text-school-text mb-4">Navegación</h3>
             <ul className="space-y-2">
-              {NAV_LINKS.map(link => (
+              {FOOTER_LINKS.map(link => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

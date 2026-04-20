@@ -1,38 +1,59 @@
 import type { Metadata } from 'next';
-import { Library } from 'lucide-react';
-import { allResources } from '@/lib/resources';
-import ResourceGrid from '@/components/biblioteca/ResourceGrid';
+import { resourcesByYear } from '@/lib/resources';
+import BookButton from '@/components/biblioteca/BookButton';
 
 export const metadata: Metadata = {
-  title: 'Biblioteca Virtual',
-  description: 'Explora nuestra colección de recursos educativos digitales: PDFs, videos, presentaciones y más.',
+  title: 'Banco de Recursos',
+  description:
+    'Biblioteca virtual del Complejo Educativo Stella Cechini. Selecciona tu año escolar para acceder a los recursos.',
 };
 
 export default function BibliotecaPage() {
   return (
-    <div className="pt-24 section-padding">
-      <div className="container-max">
-        <div className="mb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-lg bg-school-red/20 flex items-center justify-center">
-              <Library size={22} className="text-school-red-light" />
-            </div>
-            <p className="text-school-muted text-sm font-display">Biblioteca Virtual</p>
-          </div>
-          <h1 className="font-display font-black text-4xl md:text-5xl text-school-text mb-4">
-            Recursos Digitales
-          </h1>
-          <p className="text-school-muted text-lg max-w-2xl leading-relaxed">
-            Accede a nuestra colección completa de material educativo. Usa el buscador para
-            encontrar exactamente lo que necesitas.
-          </p>
-          <div className="mt-4 inline-block px-3 py-1 rounded-full bg-school-surface border border-school-border text-school-muted text-sm">
-            {allResources.length} recursos disponibles
-          </div>
-        </div>
+    <div className="pt-24 pb-20 min-h-screen">
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=80')",
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-school-bg via-school-bg/70 to-school-bg" />
 
-        <ResourceGrid resources={allResources} />
-      </div>
+        <div className="relative container-max px-6 py-16 text-center">
+          <p className="text-school-yellow font-display font-semibold text-sm uppercase tracking-widest mb-3">
+            Biblioteca Virtual
+          </p>
+          <h1
+            className="font-display font-black text-school-yellow mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
+            style={{
+              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+              fontFamily: 'var(--font-poppins)',
+            }}
+          >
+            Banco de Recursos
+          </h1>
+          <p className="text-school-muted text-base md:text-lg max-w-2xl mx-auto mb-12">
+            Selecciona tu año escolar y explora todos los recursos educativos disponibles
+          </p>
+        </div>
+      </section>
+
+      <section className="container-max px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 justify-items-center">
+          {resourcesByYear.map((yr, i) => (
+            <BookButton
+              key={yr.slug}
+              slug={yr.slug}
+              label={yr.label}
+              available={yr.available}
+              index={i}
+            />
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

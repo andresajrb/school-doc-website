@@ -1,146 +1,82 @@
-export type ResourceType = 'pdf' | 'video' | 'presentation' | 'link' | 'document';
+export type YearNumber = 1 | 2 | 3 | 4 | 5;
 
-export interface Resource {
+export type ResourceKind =
+  | 'pdf'
+  | 'video'
+  | 'docx'
+  | 'ppt'
+  | 'image'
+  | 'audio'
+  | 'link';
+
+export interface DriveResource {
   id: string;
   title: string;
-  subject: string;
-  year: 1 | 2 | 3 | 4 | 5;
-  type: ResourceType;
+  kind: ResourceKind;
   url: string;
-  description?: string;
-  tags?: string[];
+}
+
+export interface Topic {
+  id: string;
+  title: string;
+  resources: DriveResource[];
 }
 
 export interface Subject {
+  id: string;
   name: string;
-  resources: Resource[];
+  icon?: string;
+  color?: string;
+  topics: Topic[];
 }
 
-export interface YearResources {
-  year: 1 | 2 | 3 | 4 | 5;
+export interface Moment {
+  id: 1 | 2 | 3;
   label: string;
   subjects: Subject[];
 }
 
-// Datos de ejemplo — poblar con los links reales al agregar contenido
-export const resourcesByYear: YearResources[] = [
-  {
-    year: 1,
-    label: '1° Año',
-    subjects: [
-      {
-        name: 'Matemáticas',
-        resources: [
-          {
-            id: 'mat-1-01',
-            title: 'Operaciones básicas — Guía de ejercicios',
-            subject: 'Matemáticas',
-            year: 1,
-            type: 'pdf',
-            url: '#',
-            description: 'Suma, resta, multiplicación y división.',
-            tags: ['aritmética', 'operaciones'],
-          },
-        ],
-      },
-      {
-        name: 'Lengua y Literatura',
-        resources: [
-          {
-            id: 'len-1-01',
-            title: 'Comprensión lectora — Textos narrativos',
-            subject: 'Lengua y Literatura',
-            year: 1,
-            type: 'document',
-            url: '#',
-            tags: ['lectura', 'narrativa'],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    year: 2,
-    label: '2° Año',
-    subjects: [
-      {
-        name: 'Matemáticas',
-        resources: [
-          {
-            id: 'mat-2-01',
-            title: 'Álgebra introductoria',
-            subject: 'Matemáticas',
-            year: 2,
-            type: 'pdf',
-            url: '#',
-            tags: ['álgebra', 'ecuaciones'],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    year: 3,
-    label: '3° Año',
-    subjects: [
-      {
-        name: 'Biología',
-        resources: [
-          {
-            id: 'bio-3-01',
-            title: 'La célula — Estructura y funciones',
-            subject: 'Biología',
-            year: 3,
-            type: 'video',
-            url: '#',
-            tags: ['célula', 'biología'],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    year: 4,
-    label: '4° Año',
-    subjects: [
-      {
-        name: 'Física',
-        resources: [
-          {
-            id: 'fis-4-01',
-            title: 'Leyes de Newton — Presentación',
-            subject: 'Física',
-            year: 4,
-            type: 'presentation',
-            url: '#',
-            tags: ['física', 'newton', 'movimiento'],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    year: 5,
-    label: '5° Año',
-    subjects: [
-      {
-        name: 'Química',
-        resources: [
-          {
-            id: 'qui-5-01',
-            title: 'Tabla periódica — Guía completa',
-            subject: 'Química',
-            year: 5,
-            type: 'pdf',
-            url: '#',
-            tags: ['química', 'tabla periódica'],
-          },
-        ],
-      },
-    ],
-  },
+export interface BicentenariaBook {
+  id: string;
+  title: string;
+  subtitle?: string;
+  cover: string;
+  pdfUrl: string;
+}
+
+export interface YearData {
+  year: YearNumber;
+  label: string;
+  slug: string;
+  available: boolean;
+  bicentenariaBooks: BicentenariaBook[];
+  moments: Moment[];
+}
+
+import { year1Data } from '@/data/years/1er';
+
+const emptyMoments: Moment[] = [
+  { id: 1, label: 'Primer Lapso', subjects: [] },
+  { id: 2, label: 'Segundo Lapso', subjects: [] },
+  { id: 3, label: 'Tercer Lapso', subjects: [] },
 ];
 
-export const allResources: Resource[] = resourcesByYear.flatMap(yr =>
-  yr.subjects.flatMap(sub => sub.resources)
-);
+export const resourcesByYear: YearData[] = [
+  year1Data,
+  { year: 2, label: '2do Año', slug: '2do', available: false, bicentenariaBooks: [], moments: emptyMoments },
+  { year: 3, label: '3er Año', slug: '3er', available: false, bicentenariaBooks: [], moments: emptyMoments },
+  { year: 4, label: '4to Año', slug: '4to', available: false, bicentenariaBooks: [], moments: emptyMoments },
+  { year: 5, label: '5to Año', slug: '5to', available: false, bicentenariaBooks: [], moments: emptyMoments },
+];
+
+export function getYearBySlug(slug: string): YearData | undefined {
+  return resourcesByYear.find(y => y.slug === slug);
+}
+
+export function countResources(year: YearData): number {
+  return year.moments.reduce(
+    (acc, m) => acc + m.subjects.reduce(
+      (a, s) => a + s.topics.reduce((x, t) => x + t.resources.length, 0), 0,
+    ), 0,
+  );
+}

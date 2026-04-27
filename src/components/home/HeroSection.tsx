@@ -10,7 +10,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('https://ik.imagekit.io/lx0ugzfpov/school-doc-website/school-image.jpg')",
+          backgroundImage: "url('https://ik.imagekit.io/lx0ugzfpov/school-doc-website/school-image-ce.jpg?updatedAt=1777256649700')",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-school-dark/80 via-school-bg/70 to-school-bg" />

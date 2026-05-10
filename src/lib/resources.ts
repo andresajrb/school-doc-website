@@ -55,6 +55,7 @@ export interface YearData {
 
 import { year1Data } from '@/data/years/1er';
 import { year2Data } from '@/data/years/2do';
+import { year3Data } from '@/data/years/3er';
 
 const emptyMoments: Moment[] = [
   { id: 1, label: 'Primer Lapso', subjects: [] },
@@ -65,7 +66,7 @@ const emptyMoments: Moment[] = [
 export const resourcesByYear: YearData[] = [
   year1Data,
   year2Data,
-  { year: 3, label: '3er Año', slug: '3er', available: false, bicentenariaBooks: [], moments: emptyMoments },
+  year3Data,
   { year: 4, label: '4to Año', slug: '4to', available: false, bicentenariaBooks: [], moments: emptyMoments },
   { year: 5, label: '5to Año', slug: '5to', available: false, bicentenariaBooks: [], moments: emptyMoments },
 ];
